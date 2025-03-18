@@ -5,15 +5,15 @@ import plotly_express as px
 df = pd.read_csv('notebooks/vehicles_us.csv') # leer los datos
 st.header('Vehicles US')
 
-hist_button = st.button('Construir histograma') # crear un botón
-
-if hist_button: # al hacer clic en el botón
-    # escribir un mensaje
-    st.write('Creación de un histograma para el conjunto de datos de anuncios de venta de coches')
-            
-    # crear un histograma
-    fig = px.histogram(df, x="odometer")
-        
-    # mostrar un gráfico Plotly interactivo
+disp_button = st.button('Construir Grafico de Dispersión')
+if disp_button: 
+    st.write('Creación de un grafico de dispersión para el conjunto de datos de anuncios de venta de coches')
+    fig = px.scatter(df, x="odometer", y="price")
     st.plotly_chart(fig, use_container_width=True)
 
+
+build_histogram = st.checkbox('Construir un histograma')
+if build_histogram:
+    st.write('Construir un histograma para la columna odómetro')            
+    fig = px.histogram(df, x="odometer")
+    st.plotly_chart(fig, use_container_width=True)
